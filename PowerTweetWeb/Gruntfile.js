@@ -1,4 +1,4 @@
-﻿/// <binding ProjectOpened='watch' />
+﻿/// <binding BeforeBuild='browserify' ProjectOpened='watch' />
 module.exports = function (grunt) {
 
     grunt.loadNpmTasks("grunt-browserify");
