@@ -8,10 +8,18 @@
     right: 0;
     bottom: 0;
     overflow: auto; /* Enable scrollbars within main content section */
+    padding: 0;
 }
 
 .padding {
     padding: 15px;
+}
+
+.header {
+    padding: 15px;
+    background-color: #B7472A;
+    color: white;
+    height: 50px;
 }
 
 #notification-message {
