@@ -12,15 +12,22 @@
     <!-- <script src="../../Scripts/Office/MicrosoftAjax.js" type="text/javascript"></script>  -->
     <!-- <script src="../../Scripts/Office/1/office.js" type="text/javascript"></script>  -->
 
-    <link href="app.css" rel="stylesheet" type="text/css" />
-    <script src="app.js" type="text/javascript"></script>
+    <link href="App.css" rel="stylesheet" type="text/css" />
+    <script src="App.js" type="text/javascript"></script>
     <script src="bundle.js"></script>
 </head>
 <body>
     <div id="content-main">
-        <div class="padding">
+        <div class="header">
             <h1>PowerTweet</h1>
-            <button id="get-tweets">Get Tweets for "Microsoft"</button>
+        </div>
+        <div class="padding">
+            
+            <span>Display a live feed of tweets about your presentation, directly in PowerPoint!</span>
+            
+            <h3>Search Term</h3>
+            <input type="text" id="searchTerm"/>
+            <button id="get-tweets">Show Live Feed</button>
         </div>
     </div>
 </body>
