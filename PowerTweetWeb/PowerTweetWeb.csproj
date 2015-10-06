@@ -70,12 +70,14 @@
     <Content Include="App\bundle.js" />
     <Content Include="App\entry.html" />
     <Content Include="App\Source\main.js" />
+    <Content Include="gulpfile.js" />
     <Content Include="packages.config" />
     <Content Include="App\package.json" />
     <None Include="compilerconfig.json" />
     <Content Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </Content>
+    <Content Include="package.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -89,7 +91,6 @@
     <Content Include="App\app.js" />
     <Content Include="Content\Office.css" />
     <Content Include="Images\Close.png" />
-    <Content Include="Scripts\es6promise.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
