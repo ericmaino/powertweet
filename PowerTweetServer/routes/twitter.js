@@ -10,11 +10,17 @@ var T = new Twit({
 });
 
 /* GET users listing. */
-router.get('/:query', function (req, res, next) {
-    T.get('search/tweets', { q: req.params.query, count: 100 }, function (err, data, response) {
+router.get('/', function (req, res, next) {
+    var search = req.query.q;
+    var token = req.query.token;
+    var tweetCount = req.query.count || 10;
+    
+    T.get('search/tweets', { q: search, count: tweetCount }, function (err, data, response) {
         if (err) {
             res.status(500).end();
         } else {
+            data.token = "1234";
+            data.count = tweetCount;
             res.send(data);
         }
     });
