@@ -1,43 +1,59 @@
 var React = require('react'),
     Tweet = require('./tweet'),
+    SetIntervalMixin = require('./../Mixin/setinterval'),
     TweetListComponent;
 
 TweetListComponent = React.createClass({
+    mixins: [SetIntervalMixin], 
+
     getInitialState() {
         return {
+            twitterUrl: '',
             tweets: []
         };
     },
 
     componentDidMount() {
-        var url = "https://partnercatalysthack-powertwitter.azurewebsites.net/twitter?q=" + encodeURIComponent(this.props.hashtag);
-        console.log(url);
+        this.setState({
+            twitterUrl: "https://partnercatalysthack-powertwitter.azurewebsites.net/twitter?q=" + encodeURIComponent(this.props.hashtag)
+        }, function() {
+            this.setInterval(this._getTweets, 5000);
+        });
+    },
 
+    _getTweets() {
         $.ajax({
-            url: url,
+            url: this.state.twitterUrl,
             dataType: 'json',
-            success: function(data) {
+            success: (data) => {
                 console.log(data);
                 if (data && data.statuses) {
                     this.setState({ tweet: data.statuses });
                 }
-            }.bind(this),
-            error: function(xhr, status, err) {
+            },
+            error: (xhr, status, err) => {
                 console.error(url, status, err.toString());
-            }.bind(this)
-        });
+            }
+        })
     },
 
-    render() {
-        let tweets = this.state.tweets;
+    render () {
+        let tweets = this.state.tweet || [];
         let renderedTweets = [];
 
-        tweets.forEach((tweet) => {
-            renderedTweets.push(<Tweet tweet={tweet} />);
-        });
+        for (let i = 0; i < tweets.length; i = i + 1) {
+            renderedTweets.push(<Tweet tweet={tweets[i]} />);
+        }
 
         return (
-            <div>{renderedTweets}</div>
+            <div className="padding">
+                <div className="tweetListHeader">
+                    <h1>Tweets for {this.props.hashtag}</h1>
+                </div>
+                <div>
+                    {renderedTweets}
+                </div>
+            </div>
         );
     }
 });

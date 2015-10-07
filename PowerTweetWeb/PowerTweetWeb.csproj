@@ -74,6 +74,7 @@
     <Content Include="App\Source\Components\welcome.js" />
     <Content Include="App\Source\main.js" />
     <Content Include="App\Source\Components\tweet.js" />
+    <Content Include="App\Source\Mixin\setinterval.js" />
     <Content Include="Gruntfile.js" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
