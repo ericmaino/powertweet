@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Twit = require('twit')
+var Twit = require('twit');
 
 var T = new Twit({
     consumer_key:         process.env.Twitter_Consumer_Key,
