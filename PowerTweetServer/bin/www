@@ -4,9 +4,10 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../lib/app');
 var debug = require('debug')('powertweetserver:server');
 var http = require('http');
+var polyfills = require('babel/polyfill');
 
 /**
  * Get port from environment and store in Express.
