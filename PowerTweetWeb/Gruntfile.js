@@ -7,13 +7,13 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         properties: {
-            bundle: "./App/Build/bundle.js"
+            bundled: "./App/Build/bundle.js"
         },
 
         browserify: {
             dist: {
                 files: {
-                    "./App/Build/bundle.js": ["./App/Source/*.js"]
+                    "<%= properties.bundled %>": ["./App/Source/*.js"]
                 },
                 options: {
                     transform: [
