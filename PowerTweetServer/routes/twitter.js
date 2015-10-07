@@ -17,7 +17,11 @@ router.get('/:query', function(req, res, next) {
 	var access_token_secret = req.query.accessTokenSecret;
 
 	T.get('search/tweets', { q: req.params.query, count: 100 }, function(err, data, response) {
-	  res.send(data);
+		if (err) {
+			res.status(500).end();
+		} else {
+			res.send(data);
+		}
 	});
 });
 
