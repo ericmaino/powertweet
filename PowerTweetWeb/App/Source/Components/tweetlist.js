@@ -1,20 +1,29 @@
 var React = require('react'),
     Tweet = require('./tweet'),
+    SetIntervalMixin = require('./../Mixin/setinterval'),
     TweetListComponent;
 
 TweetListComponent = React.createClass({
+    mixins: [SetIntervalMixin], 
+
     getInitialState() {
         return {
+            twitterUrl: '',
             tweets: []
         };
     },
 
     componentDidMount() {
-        var url = "https://partnercatalysthack-powertwitter.azurewebsites.net/twitter?q=" + encodeURIComponent(this.props.hashtag);
-        console.log(url);
+        this.setState({
+            twitterUrl: "https://partnercatalysthack-powertwitter.azurewebsites.net/twitter?q=" + encodeURIComponent(this.props.hashtag)
+        }, function() {
+            this.setInterval(this._getTweets, 5000);
+        });
+    },
 
+    _getTweets() {
         $.ajax({
-            url: url,
+            url: this.state.twitterUrl,
             dataType: 'json',
             success: (data) => {
                 console.log(data);
@@ -25,7 +34,7 @@ TweetListComponent = React.createClass({
             error: (xhr, status, err) => {
                 console.error(url, status, err.toString());
             }
-        });
+        })
     },
 
     render () {
