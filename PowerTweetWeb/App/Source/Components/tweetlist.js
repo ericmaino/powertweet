@@ -16,25 +16,25 @@ TweetListComponent = React.createClass({
         $.ajax({
             url: url,
             dataType: 'json',
-            success: function(data) {
+            success: (data) => {
                 console.log(data);
                 if (data && data.statuses) {
                     this.setState({ tweet: data.statuses });
                 }
-            }.bind(this),
-            error: function(xhr, status, err) {
+            },
+            error: (xhr, status, err) => {
                 console.error(url, status, err.toString());
-            }.bind(this)
+            }
         });
     },
 
-    render() {
-        let tweets = require('../tweet_example.json').statuses;
+    render () {
+        let tweets = this.state.tweet || [];
         let renderedTweets = [];
 
-        tweets.forEach((tweet) => {
-            renderedTweets.push(<Tweet tweet={tweet} />);
-        });
+        for (let i = 0; i < tweets.length; i = i + 1) {
+            renderedTweets.push(<Tweet tweet={tweets[i]} />);
+        }
 
         return (
             <div className="padding">

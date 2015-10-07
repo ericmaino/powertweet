@@ -11,16 +11,17 @@ TweetComponent = React.createClass({
     },
 
     render() {
+        let t = this.props.tweet;
 
         return (
             <div className="tweet">
                 <blockquote className="twitter-tweet">
                     <div>
-                        <img src={this.props.avatar} />
-                        <p>{this.props.author}</p>
-                        <p>@{this.props.screen_name}</p>
+                        <img src={t.avatar} />
+                        <p>{t.author}</p>
+                        <p>@{t.screen_name}</p>
                     </div>
-                    <p>{this.props.text}</p>
+                    <p>{t.text}</p>
                 </blockquote>
             </div>
         );
