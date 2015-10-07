@@ -70,7 +70,7 @@
     <Content Include="App\entry.html" />
     <Content Include="App\Build\bundle.js" />
     <Content Include="App\Source\main.js" />
-    <Content Include="App\Source\tweet.js" />
+    <Content Include="App\Source\Components\tweet.js" />
     <Content Include="Gruntfile.js" />
     <Content Include="packages.config" />
     <Content Include="package.json" />

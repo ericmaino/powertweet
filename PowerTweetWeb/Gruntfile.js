@@ -3,8 +3,13 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks("grunt-browserify");
     grunt.loadNpmTasks("grunt-contrib-watch");
+    grunt.loadNpmTasks("grunt-contrib-clean");
 
     grunt.initConfig({
+        properties: {
+            bundle: "./App/Build/bundle.js"
+        },
+
         browserify: {
             dist: {
                 files: {
@@ -18,6 +23,10 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+        clean: {
+            build: ["path/to/dir/one", "path/to/dir/two"],
+            release: ["path/to/another/dir/one", "path/to/another/dir/two"]
         },
         watch: {
             scripts: {
