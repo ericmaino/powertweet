@@ -29,7 +29,7 @@ TweetListComponent = React.createClass({
     },
 
     render() {
-        let tweets = this.state.tweets;
+        let tweets = require('../tweet_example.json').statuses;
         let renderedTweets = [];
 
         tweets.forEach((tweet) => {
@@ -37,7 +37,14 @@ TweetListComponent = React.createClass({
         });
 
         return (
-            <div>{renderedTweets}</div>
+            <div className="padding">
+                <div className="tweetListHeader">
+                    <h1>Tweets for {this.props.hashtag}</h1>
+                </div>
+                <div>
+                    {renderedTweets}
+                </div>
+            </div>
         );
     }
 });
