@@ -10,16 +10,21 @@ TweetListComponent = React.createClass({
     },
 
     componentDidMount() {
-        let url = "http://partnercatalysthack-powertwitter.azurewebsites.net/twitter/" + encodeURIComponent(this.props.hashtag);
+        var url = "https://partnercatalysthack-powertwitter.azurewebsites.net/twitter?q=" + encodeURIComponent(this.props.hashtag);
+        console.log(url);
 
-        $.get(url, (result) => {
-            if (this.isMounted()) {
-                this.setState({
-                    tweets: result
-                });
-            }
-        }).fail((error) => {
-            console.log(error);
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                if (data && data.statuses) {
+                    this.setState({ tweet: data.statuses });
+                }
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(url, status, err.toString());
+            }.bind(this)
         });
     },
 
@@ -28,10 +33,7 @@ TweetListComponent = React.createClass({
         let renderedTweets = [];
 
         tweets.forEach((tweet) => {
-            renderedTweets.push(<Tweet text={tweet.text}
-                                       author={tweet.user.screen_name}
-                                       avatar={tweet.user.profile_image_url_https}
-                                       timestamp={tweet.created_at} />);
+            renderedTweets.push(<Tweet tweet={tweet} />);
         });
 
         return (

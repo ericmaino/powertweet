@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="App\entry.html" />
     <Content Include="App\Build\bundle.js" />
+    <Content Include="App\Source\Components\powertweet.js" />
     <Content Include="App\Source\Components\tweetlist.js" />
     <Content Include="App\Source\Components\welcome.js" />
     <Content Include="App\Source\main.js" />
@@ -349,7 +350,6 @@
     <Content Include="Scripts\Office\metadata\endpoints.xml" />
     <Content Include="Scripts\Office\metadata\features.xml" />
     <Content Include="Scripts\Office\MicrosoftAjax.js" />
-    <Content Include="Scripts\require.js" />
     <Content Include="Scripts\_officeintellisense.js" />
     <Content Include="Web.config" />
   </ItemGroup>

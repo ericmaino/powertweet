@@ -3,10 +3,10 @@ var router = express.Router();
 var Twit = require('twit');
 
 var T = new Twit({
-    consumer_key: process.env.Twitter_Consumer_Key,
-    consumer_secret: process.env.Twitter_Consumer_Secret,
-    access_token: process.env.Twitter_Access_Token,
-    access_token_secret: process.env.Twitter_Access_Token_Secret
+    consumer_key:         process.env.Twitter_Consumer_Key || 'uQ1zsyyKuoZkFKMQWHPxC9Ozq',
+  	consumer_secret:      process.env.Twitter_Consumer_Secret || '0b7HQECvcohaApp7tAC03DC8s9QSZjez1vaavf9gACVlhV9hTu',
+   	access_token:         process.env.Twitter_Access_Token || '1687031706-Ch229Sp86WTxrwb6IBg13NQxekhankZA1BYdM5t',
+    access_token_secret:  process.env.Twitter_Access_Token_Secret || '7AZgSNsYKB6zEX8TNGPC09D7aKBwR1UTXEmxgFgXnwADs'
 });
 
 /* GET users listing. */
