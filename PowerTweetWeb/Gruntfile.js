@@ -8,20 +8,20 @@ module.exports = function (grunt) {
         browserify: {
             dist: {
                 files: {
-                    "./App/Build/bundle.js": ["./App/**/*.es6.js"]
+                    "./App/Build/bundle.js": ["./App/Source/*.js"]
                 },
                 options: {
                     transform: [
-                       ["babelify", {
-                           loose: "all"
-                       }]
+                        ['reactify', {
+                            'es6': true
+                        }]
                     ]
                 }
             }
         },
         watch: {
             scripts: {
-                files: ["Gruntfile.js", "./App/**/*.es6.js"],
+                files: ["Gruntfile.js", "./App/Source/*.js"],
                 tasks: ["browserify"]
             }
         }

@@ -4,10 +4,12 @@
     // The initialize function must be run each time a new page is loaded
     Office.initialize = function (reason) {
         $(document).ready(function () {
-            let twitter = require('./twitter.es6.js');
+            let React = require('react-dom');
+            let Tweet = require('./tweet.js');
 
             app.initialize();
-            twitter.setupButton();
+
+            React.render(<Tweet text="Hi!" />, document.getElementById('content-main'));
         });
     };
 })();
