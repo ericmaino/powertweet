@@ -6,11 +6,10 @@
         $(document).ready(function () {
             let ReactDOM = require('react-dom');
             let React = require('react');
-            let Tweet = require('./Components/tweet.js');
+            let PowerTweet = require('./components/powertweet.js');
 
             app.initialize();
-
-            ReactDOM.render(<Tweet hashtag="#mspowertweet" />, document.getElementById('react-container'));
+            ReactDOM.render(<PowerTweet />, document.getElementById('content-main'));
         });
     };
 })();
