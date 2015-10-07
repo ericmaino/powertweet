@@ -17,7 +17,7 @@ TweetListComponent = React.createClass({
         this.setState({
             twitterUrl: "https://partnercatalysthack-powertwitter.azurewebsites.net/twitter?q=" + encodeURIComponent(this.props.hashtag)
         }, function() {
-            this.setInterval(this._getTweets, 5000);
+            this.setInterval(this._getTweets, 1000);
         });
     },
 
