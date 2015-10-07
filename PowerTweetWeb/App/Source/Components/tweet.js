@@ -2,14 +2,6 @@
     TweetComponent;
 
 TweetComponent = React.createClass({
-    getInitialState() {
-        return {
-            text: '',
-            author: '',
-            avatar: ''
-        };
-    },
-
     render() {
         let t = this.props.tweet;
 

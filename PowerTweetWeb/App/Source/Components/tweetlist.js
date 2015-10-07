@@ -4,7 +4,7 @@ var React = require('react'),
     TweetListComponent;
 
 TweetListComponent = React.createClass({
-    mixins: [SetIntervalMixin], 
+    mixins: [SetIntervalMixin],
 
     getInitialState() {
         return {
@@ -46,8 +46,8 @@ TweetListComponent = React.createClass({
         }
 
         return (
-            <div className="padding">
-                <div className="tweetListHeader">
+            <div>
+                <div className="tweetlist-header">
                     <h1>Tweets for {this.props.hashtag}</h1>
                 </div>
                 <div>

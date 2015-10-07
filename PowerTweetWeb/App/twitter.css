@@ -1,0 +1,154 @@
+﻿.tweetlist-header {
+    padding-left: 40px;
+}
+
+.tweetlist-header h1 {
+    font-size: 56px;
+}
+
+.tweetcard {
+    background-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(41, 47, 51);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: rgb(41, 47, 51);
+    cursor: default;
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    height: 197px;
+    line-height: 18px;
+    min-height: 51px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 30px;
+    position: relative;
+    width: 100%;
+}
+
+.content.clearfix {
+    color: rgb(41, 47, 51);
+    cursor: default;
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    height: 63px;
+    line-height: 18px;
+    margin-left: 58px;
+    width: calc(100% - 58px);
+}
+
+.permalink-header {
+    color: rgb(41, 47, 51);
+    cursor: default;
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    height: 48px;
+    line-height: 18px;
+    margin-bottom: 15px;
+    width: calc(100% - 58px);
+}
+
+.account-group {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    background-origin: padding-box;
+    background-size: auto;
+    color: rgb(43, 123, 185);
+    cursor: auto;
+    display: block;
+    float: left;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    height: 48px;
+    line-height: 18px;
+    text-decoration: none;
+}
+
+.avatar {
+    border-bottom-color: rgb(43, 123, 185);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+    border-image-outset: 0px;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgb(43, 123, 185);
+    border-left-style: none;
+    border-left-width: 0px;
+    border-right-color: rgb(43, 123, 185);
+    border-right-style: none;
+    border-right-width: 0px;
+    border-top-color: rgb(43, 123, 185);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-top-style: none;
+    border-top-width: 0px;
+    color: rgb(43, 123, 185);
+    cursor: auto;
+    display: block;
+    float: left;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    height: 48px;
+    line-height: 18px;
+    margin-left: -58px;
+    margin-top: 0px;
+    width: 48px;
+}
+
+.fullname {
+    color: rgb(41, 47, 51);
+    cursor: auto;
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    height: 22px;
+    line-height: 22.5px;
+    margin-top: 3px;
+    padding-top: 2px;
+}
+
+.username {
+    color: rgb(136, 153, 166);
+    cursor: auto;
+    direction: ltr;
+    display: inline;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    height: auto;
+    line-height: 18px;
+    unicode-bidi: embed;
+    width: auto;
+}
+
+.tweet-text {
+    color: rgb(41, 47, 51);
+    cursor: default;
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 300;
+    height: 102px;
+    letter-spacing: 0.28px;
+    line-height: 34px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    white-space: pre-wrap;
+    width: 100%;
+    word-wrap: break-word;
+}
