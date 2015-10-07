@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='browserify' ProjectOpened='watch' />
+﻿/// <binding BeforeBuild='build' ProjectOpened='watch' />
 module.exports = function (grunt) {
 
     grunt.loadNpmTasks("grunt-browserify");
@@ -7,13 +7,14 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         properties: {
-            bundled: "./App/Build/bundle.js"
+            bundled: "./App/Build/bundle.js",
+            source: "./App/Source/*.js"
         },
 
         browserify: {
             dist: {
                 files: {
-                    "<%= properties.bundled %>": ["./App/Source/*.js"]
+                    "<%= properties.bundled %>": ["<%= properties.source %>"]
                 },
                 options: {
                     transform: [
@@ -24,18 +25,15 @@ module.exports = function (grunt) {
                 }
             }
         },
-        clean: {
-            build: ["path/to/dir/one", "path/to/dir/two"],
-            release: ["path/to/another/dir/one", "path/to/another/dir/two"]
-        },
+        clean: ['<%= properties.bundled %>'],
         watch: {
             scripts: {
-                files: ["Gruntfile.js", "./App/Source/*.js"],
+                files: ["Gruntfile.js", "<%= properties.source %>"],
                 tasks: ["browserify"]
             }
         }
     });
 
     grunt.registerTask("default", ["build", "watch"]);
-    grunt.registerTask("build", ["browserify"]);
+    grunt.registerTask("build", ["clean", "browserify"]);
 };
