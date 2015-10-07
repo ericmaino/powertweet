@@ -14,15 +14,20 @@ TweetComponent = React.createClass({
         let t = this.props.tweet;
 
         return (
-            <div className="tweet">
-                <blockquote className="twitter-tweet">
-                    <div>
-                        <img src={t.avatar} />
-                        <p>{t.author}</p>
-                        <p>@{t.screen_name}</p>
+            <div className="expansion-container js-expansion-container">
+                <div className="tweetcard">
+                    <div className="content clearfix">
+                        <div className="permalink-header">
+                            <a className="account-group">
+                                <img alt="" className="avatar" src={t.user.profile_image_url_https} />
+                                <strong className="fullname">{t.user.name}</strong>
+                                <span className="username"><span>@</span><b>{t.user.screen_name}</b></span>
+                            </a>
+                        </div>
                     </div>
-                    <p>{t.text}</p>
-                </blockquote>
+
+                    <p className="tweet-text">{t.text}</p>
+                </div>
             </div>
         );
     }
