@@ -68,13 +68,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\entry.html" />
+    <Content Include="App\Build\bundle.js" />
+    <Content Include="App\entry.html" />
     <Content Include="App\Source\main.es6.js" />
+    <Content Include="App\Source\twitter.es6.js" />
+    <Content Include="Gruntfile.js" />
     <Content Include="packages.config" />
     <Content Include="App\package.json" />
-    <None Include="compilerconfig.json" />
-    <Content Include="compilerconfig.json.defaults">
-      <DependentUpon>compilerconfig.json</DependentUpon>
-    </Content>
     <Content Include="package.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -356,6 +356,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
