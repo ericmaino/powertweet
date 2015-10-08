@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "babel": "^5.8.23",
     "babelify": "^6.3.0",
     "grunt": "^0.4.5",
     "grunt-browserify": "^4.0.1",
@@ -16,8 +17,5 @@
     "react-dom": "^0.14.0"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "reactify": "^1.1.1"
-  }
+  "license": "MIT"
 }

@@ -28,7 +28,7 @@ TweetListComponent = React.createClass({
             success: (data) => {
                 console.log(data);
                 if (data && data.statuses) {
-                    this.setState({ tweet: data.statuses });
+                    this.setState({ tweets: data.statuses });
                 }
             },
             error: (xhr, status, err) => {
@@ -38,17 +38,17 @@ TweetListComponent = React.createClass({
     },
 
     render () {
-        let tweets = this.state.tweet || [];
+        let tweets = this.state.tweets || [];
         let renderedTweets = [];
 
         for (let i = 0; i < tweets.length; i = i + 1) {
-            renderedTweets.push(<Tweet tweet={tweets[i]} />);
+            renderedTweets.push(<Tweet key={tweets[i].id} tweet={tweets[i]} />);
         }
 
         return (
             <div>
                 <div className="tweetlist-header">
-                    <h1>Tweets for {this.props.hashtag}</h1>
+                    <h1>Tweets for "{this.props.hashtag}"</h1>
                 </div>
                 <div>
                     {renderedTweets}

@@ -18,9 +18,7 @@ module.exports = function (grunt) {
                 },
                 options: {
                     transform: [
-                        ['reactify', {
-                            'es6': true
-                        }]
+                        ['babelify']
                     ]
                 }
             }
