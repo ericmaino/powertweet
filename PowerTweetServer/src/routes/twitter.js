@@ -7,9 +7,9 @@ var crypto = require('crypto');
 
 
 var T = new Twit({
-    consumer_key: 'uQ1zsyyKuoZkFKMQWHPxC9Ozq',
-    consumer_secret: '0b7HQECvcohaApp7tAC03DC8s9QSZjez1vaavf9gACVlhV9hTu',
-    access_token: ,
+    consumer_key: process.env.Twitter_Consumer_Key.trim(),
+    consumer_secret: process.env.Twitter_Consumer_Secret.trim(),
+    access_token: process.env.Twitter_Access_Token.trim(),
     access_token_secret: process.env.Twitter_Access_Token_Secret.trim()
 });
 
@@ -32,9 +32,9 @@ function getToken(token) {
     //    result = JSON.parse(fs.readFileSync(tokenFile, "UTF-8"));
     //}
     //else {
-        result = {
-            id: generateToken(8)
-        }
+    result = {
+        id: generateToken(8)
+    }
     //}
     
     return result;
