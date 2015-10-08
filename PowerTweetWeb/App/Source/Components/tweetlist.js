@@ -6,6 +6,10 @@ var React = require('react'),
 TweetListComponent = React.createClass({
     mixins: [SetIntervalMixin],
 
+    propTypes: {
+        hashtag: React.PropTypes.string.isRequired
+    },
+
     getInitialState() {
         return {
             twitterUrl: '',
@@ -22,6 +26,7 @@ TweetListComponent = React.createClass({
     },
 
     _getTweets() {
+        console.log(this.state.url);
         $.ajax({
             url: this.state.twitterUrl,
             dataType: 'json',
