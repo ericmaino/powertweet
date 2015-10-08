@@ -3,8 +3,8 @@
 
     function initialize() {
         $(document).ready(function () {
-            let ReactDOM = require('react-dom');
             let React = require('react');
+            let ReactDOM = require('react-dom');
             let PowerTweet = require('./components/powertweet.js');
 
             app.initialize();

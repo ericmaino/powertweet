@@ -5,23 +5,6 @@ var app = (function () {
 
     var app = {};
 
-    // Checking for Office
-    if (window.external.GetContext) {
-        // The initialize function must be run each time a new page is loaded
-        Office.initialize = function (reason) {
-            $(document).ready(function () {
-                app.initialize();
-                var tag = app.getHashTag();
-                $('.hashtag').html(tag);
-            });
-        };
-    } else {
-        // We're probably *not* running in Office
-        $(document).ready(function () {
-            app.initialize();
-        });
-    }
-
     Date.prototype.yyyymmdd = function () {
         var yyyy = this.getFullYear().toString();
         var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based

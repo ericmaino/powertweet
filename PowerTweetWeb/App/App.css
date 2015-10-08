@@ -49,3 +49,44 @@
     top: 5px;
     cursor: pointer;
 }
+
+/* Welcome Area */
+.welcome.ms-Dialog .ms-Dialog-main {
+    max-width: none;
+    width: 500px;
+}
+
+.welcome .ms-Dialog-actions {
+    margin: 40px 0 0;
+}
+
+/* Twitter Feed */
+.tweetlist-header {
+    padding-left: 20px;
+}
+
+.ms-PersonaCard {
+    width: 500px;
+    float: left;
+    margin: 20px;
+}
+
+.ms-PersonaCard .tweet-text {
+    padding: 0 20px;
+}
+
+.ms-PersonaCard-action {
+    display: inline-block;
+    cursor: inherit;
+    font-size: 17px;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 10px;
+    color: #666;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.ms-PersonaCard-action:hover {
+    color: inherit;
+}

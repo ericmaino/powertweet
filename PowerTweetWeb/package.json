@@ -17,8 +17,5 @@
     "react-dom": "^0.14.0"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "reactify": "^1.1.1"
-  }
+  "license": "MIT"
 }
