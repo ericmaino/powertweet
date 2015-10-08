@@ -90,3 +90,7 @@
 .ms-PersonaCard-action:hover {
     color: inherit;
 }
+
+.spinner {
+    margin: 50px;
+}

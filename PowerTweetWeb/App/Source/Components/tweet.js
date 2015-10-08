@@ -19,7 +19,7 @@ TweetComponent = React.createClass({
                             <div className="ms-Persona-primaryText">{t.user.name}</div>
                             <div className="ms-Persona-secondaryText">@{t.user.screen_name}</div>
                             <div className="ms-Persona-tertiaryText">{t.user.location}</div>
-                            <div className="ms-Persona-optionalText">{t.user.description}</div>
+                            <div className="ms-Persona-optionalText">{t.user.followers_count} Followers</div>
                         </div>
                     </div>
                 </div>

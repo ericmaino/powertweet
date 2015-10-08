@@ -12,21 +12,23 @@ TweetListComponent = React.createClass({
 
     getInitialState() {
         return {
-            twitterUrl: '',
+            twitterUrl: null,
             tweets: []
         };
     },
 
     componentDidMount() {
         this.setState({
-            twitterUrl: "https://partnercatalysthack-powertwitter.azurewebsites.net/twitter?q=" + encodeURIComponent(this.props.hashtag)
-        }, function() {
-            this.setInterval(this._getTweets, 1000);
+            twitterUrl: 'https://partnercatalysthack-powertwitter.azurewebsites.net/twitter?q=' + encodeURIComponent(this.props.hashtag)
+        }, () => {
+            this._getTweets();
+            this.setInterval(this._getTweets, 10000);
         });
     },
 
     _getTweets() {
-        console.log(this.state.twitterUrl);
+        if (!this.state.twitterUrl) return;
+
         $.ajax({
             url: this.state.twitterUrl,
             dataType: 'json',
@@ -48,6 +50,10 @@ TweetListComponent = React.createClass({
 
         for (let i = 0; i < tweets.length; i = i + 1) {
             renderedTweets.push(<Tweet key={tweets[i].id} tweet={tweets[i]} />);
+        }
+
+        if (!renderedTweets || renderedTweets.length === 0) {
+            renderedTweets = (<img className="spinner" src="../../Images/350.gif" />);
         }
 
         return (
