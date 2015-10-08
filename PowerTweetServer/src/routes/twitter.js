@@ -99,9 +99,15 @@ router.get('/', async function (req, res, next) {
     var token = getToken(token);
     queryParameters.since_id = token.last_id;
    
-    console.log(queryParameters);
-    let tweets = await getTweetsAsync("search/tweets", queryParameters);
-    processTweets(token, tweets, res);
+    try {
+        let tweets = await getTweetsAsync("search/tweets", queryParameters);
+        processTweets(token, tweets, res);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send({ error: e});
+    }
+
+
 });
 
 module.exports = router;

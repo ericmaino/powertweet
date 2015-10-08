@@ -101,7 +101,7 @@ router.get('/', function callee$0$0(req, res, next) {
 
                 queryParameters.since_id = token.last_id;
 
-                console.log(queryParameters);
+                context$1$0.prev = 6;
                 context$1$0.next = 9;
                 return regeneratorRuntime.awrap(getTweetsAsync("search/tweets", queryParameters));
 
@@ -109,12 +109,21 @@ router.get('/', function callee$0$0(req, res, next) {
                 tweets = context$1$0.sent;
 
                 processTweets(token, tweets, res);
+                context$1$0.next = 17;
+                break;
 
-            case 11:
+            case 13:
+                context$1$0.prev = 13;
+                context$1$0.t0 = context$1$0['catch'](6);
+
+                console.log(context$1$0.t0);
+                res.status(500).send({ error: context$1$0.t0 });
+
+            case 17:
             case 'end':
                 return context$1$0.stop();
         }
-    }, null, this);
+    }, null, this, [[6, 13]]);
 });
 
 module.exports = router;
