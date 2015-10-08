@@ -37,7 +37,7 @@ TweetListComponent = React.createClass({
                 }
             },
             error: (xhr, status, err) => {
-                console.error(url, status, err.toString());
+                console.error(this.state.url, status, err.toString());
             }
         })
     },
