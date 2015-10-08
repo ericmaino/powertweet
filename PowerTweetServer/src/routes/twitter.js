@@ -4,7 +4,7 @@ var Twit = require('twit');
 var fs = require('fs');
 var crypto = require('crypto');
 
-    
+
 var T = new Twit({
     consumer_key: process.env.Twitter_Consumer_Key.trim(),
     consumer_secret: process.env.Twitter_Consumer_Secret.trim(),
@@ -63,9 +63,7 @@ function generateToken(len) {
 }
 
 function processTweets(token, data, res) {
-    console.log(token);
-    console.log(data);
-    console.log(res);
+    console.log('Processing tweets');
     token.last_id = data.search_metadata.max_id;
     //saveToken(token);
     data.token = token.id;
@@ -98,7 +96,7 @@ router.get('/', async function (req, res, next) {
     
     var token = getToken(token);
     queryParameters.since_id = token.last_id;
-   
+    
     console.log(queryParameters);
     let tweets = await getTweetsAsync("search/tweets", queryParameters);
     processTweets(token, tweets, res);
