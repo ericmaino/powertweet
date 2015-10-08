@@ -63,9 +63,7 @@ function generateToken(len) {
 }
 
 function processTweets(token, data, res) {
-    console.log(token);
-    console.log(data);
-    console.log(res);
+    console.log('Processing tweets');
     token.last_id = data.search_metadata.max_id;
     //saveToken(token);
     data.token = token.id;
@@ -100,8 +98,8 @@ router.get('/', async function (req, res, next) {
     queryParameters.since_id = token.last_id;
    
     try {
-        let tweets = await getTweetsAsync("search/tweets", queryParameters);
-        processTweets(token, tweets, res);
+    let tweets = await getTweetsAsync("search/tweets", queryParameters);
+    processTweets(token, tweets, res);
     } catch (e) {
         console.log(e);
         res.status(500).send({ error: e});
