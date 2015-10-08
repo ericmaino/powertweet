@@ -14,28 +14,27 @@ var T = new Twit({
 });
 
 function saveToken(token) {
-    /*
+
     if (!fs.existsSync("tokens")) {
         fs.mkdirSync("tokens");
     }
-    
-    fs.writeFileSync("tokens\\" + token.id + ".json", JSON.stringify(token), "UTF-8", function(err) {
+
+    fs.writeFileSync("tokens\\" + token.id + ".json", JSON.stringify(token), "UTF-8", function (err) {
         console.log(err);
-    });*/
+    });
 }
 
 function getToken(token) {
     var result = null;
     var tokenFile = "tokens\\" + token + ".json";
 
-    //if (fs.existsSync(tokenFile)) {
-    //    result = JSON.parse(fs.readFileSync(tokenFile, "UTF-8"));
-    //}
-    //else {
-    result = {
-        id: generateToken(8)
-    };
-    //}
+    if (fs.existsSync(tokenFile)) {
+        result = JSON.parse(fs.readFileSync(tokenFile, "UTF-8"));
+    } else {
+        result = {
+            id: generateToken(8)
+        };
+    }
 
     return result;
 }
@@ -64,9 +63,9 @@ function generateToken(len) {
 function processTweets(token, data, res) {
     console.log('Processing tweets');
     token.last_id = data.search_metadata.max_id;
-    //saveToken(token);
+    saveToken(token);
     data.token = token.id;
-    //data = cleanTweets(data);
+    data = cleanTweets(data);
     res.send(data);
 }
 
