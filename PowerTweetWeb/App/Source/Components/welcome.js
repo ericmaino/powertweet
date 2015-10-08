@@ -20,11 +20,11 @@ WelcomeComponent = React.createClass({
                         </div>
                         <div className="ms-Dialog-actions">
                             <div className="ms-Dialog-actionsRight">
-                                <button className="ms-Dialog-action ms-Button ms-Button--primary">
-                                    <span onClick={this.getTweets} className="ms-Button-label">Show Livefeed</span>
+                                <button onClick={this.getTweets} className="ms-Dialog-action ms-Button ms-Button--primary">
+                                    <span className="ms-Button-label">Show Livefeed</span>
                                 </button>
-                                <button className="ms-Dialog-action ms-Button">
-                                    <span onClick={this.displayOptions} className="ms-Button-label">Advanced Options</span>
+                                <button onClick={this.displayOptions} className="ms-Dialog-action ms-Button">
+                                    <span className="ms-Button-label">Advanced Options</span>
                                 </button>
                             </div>
                         </div>
