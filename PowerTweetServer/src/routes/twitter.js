@@ -12,27 +12,56 @@ var T = new Twit({
     access_token_secret: process.env.Twitter_Access_Token_Secret.trim()
 });
 
-function saveToken(token) {
+function getSafeSearch(search) {
+    var base64 = new Buffer(search).toString('base64');
+    return base64.substring(0, base64.length - 2);
+}
+
+function mkDir(dir) {
+    console.log("mkDir");
+    var result = "";
+    var x = dir.split("\\");
     
-    if (!fs.existsSync("tokens")) {
-        fs.mkdirSync("tokens");
+    for (var d in x) {
+        if (result.length > 0) {
+            result = result + "\\";
+        }
+        
+        result += x[d];
+        
+        console.log(result);
+        if (!fs.existsSync(result)) {
+            fs.mkdirSync(result);
+        }
     }
-    
-    fs.writeFileSync("tokens\\" + token.id + ".json", JSON.stringify(token), "UTF-8", function (err) {
+}
+
+function getTokenPath(search, id) {
+    console.log("getTokenPath");
+    return "tokens\\" + getSafeSearch(search) + "\\" + id;
+}
+
+function saveToken(token) {
+    console.log("saveToken");
+    var basePath = getTokenPath(token.search, token.id);
+    mkDir(basePath);
+    fs.writeFileSync(basePath + "\\token.json", JSON.stringify(token), "UTF-8", function (err) {
         console.log(err);
     });
 }
 
-function getToken(token) {
+function getToken(token, search) {
+    console.log("getToken");
     var result = null;
-    var tokenFile = "tokens\\" + token + ".json";
+    var tokenPath = getTokenPath(search, token) + "\\token.json";
     
-    if (fs.existsSync(tokenFile)) {
-        result = JSON.parse(fs.readFileSync(tokenFile, "UTF-8"));
+    if (fs.existsSync(tokenPath)) {
+        result = JSON.parse(fs.readFileSync(tokenPath, "UTF-8"));
     }
     else {
         result = {
-            id: generateToken(8)
+            id: generateToken(8),
+            search: search
         }
     }
     
@@ -40,6 +69,7 @@ function getToken(token) {
 }
 
 function cleanTweets(twitterResponse) {
+    console.log("cleanTweets");
     var origin = twitterResponse.statuses;
     var cleaned = [];
     
@@ -94,7 +124,7 @@ router.get('/', async function (req, res, next) {
         count: tweetCount
     };
     
-    var token = getToken(token);
+    var token = getToken(token, search);
     queryParameters.since_id = token.last_id;
     
     try {
