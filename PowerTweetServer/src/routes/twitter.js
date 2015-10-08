@@ -4,10 +4,12 @@ var Twit = require('twit');
 var fs = require('fs');
 var crypto = require('crypto');
 
+
+
 var T = new Twit({
-    consumer_key: process.env.Twitter_Consumer_Key.trim(),
-    consumer_secret: process.env.Twitter_Consumer_Secret.trim(),
-    access_token: process.env.Twitter_Access_Token.trim(),
+    consumer_key: 'uQ1zsyyKuoZkFKMQWHPxC9Ozq',
+    consumer_secret: '0b7HQECvcohaApp7tAC03DC8s9QSZjez1vaavf9gACVlhV9hTu',
+    access_token: ,
     access_token_secret: process.env.Twitter_Access_Token_Secret.trim()
 });
 
@@ -16,7 +18,9 @@ function saveToken(token) {
         fs.mkdirSync("tokens");
     }
     
-    fs.writeFileSync("tokens\\" + token.id + ".json", JSON.stringify(token), "UTF-8");
+    fs.writeFileSync("tokens\\" + token.id + ".json", JSON.stringify(token), "UTF-8", function(err) {
+        console.log(err);
+    });
 }
 
 function getToken(token) {
