@@ -61,10 +61,10 @@ function saveTweets(token, data) {
     });
 }
 
-function getToken(token, search) {
+function getToken(tokenId, search) {
     console.log("getToken");
     var result = null;
-    var tokenPath = getTokenPath(search, token) + "\\token.json";
+    var tokenPath = getTokenPath(search, tokenId) + "\\token.json";
 
     if (fs.existsSync(tokenPath)) {
         result = JSON.parse(fs.readFileSync(tokenPath, "UTF-8"));
@@ -73,6 +73,36 @@ function getToken(token, search) {
             id: generateToken(8),
             search: search
         };
+    }
+
+    return result;
+}
+
+function getTweets(token, search) {
+    console.log("getTweets");
+
+    var tokenPath = getTokenPath(search, token.id);
+    var result = null;
+
+    console.log("reading dirs " + tokenPath);
+    var files = fs.readdirSync(tokenPath);
+    for (var i in files) {
+        var file = files[i];
+        console.log("reading file " + file);
+
+        if (file != "tokens.json") {
+            var json = JSON.parse(fs.readFileSync(tokenPath + "\\" + file, "UTF-8"));
+
+            if (!result) {
+                result = json;
+            } else {
+                for (var j in json.statuses) {
+                    result.statuses.push(json.statuses[j]);
+                }
+            }
+
+            console.log("items " + result.statuses.length);
+        }
     }
 
     return result;
@@ -123,12 +153,14 @@ function getTweetsAsync(query, params) {
 
 /* GET users listing. */
 router.get('/', function callee$0$0(req, res, next) {
-    var search, token, tweetCount, queryParameters, tweets;
+    var search, token, complete, tweetCount, queryParameters, tweets, _tweets;
+
     return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
         while (1) switch (context$1$0.prev = context$1$0.next) {
             case 0:
                 search = req.query.q;
                 token = req.query.token;
+                complete = req.query.complete;
                 tweetCount = req.query.count || 10;
                 queryParameters = {
                     q: search,
@@ -138,29 +170,41 @@ router.get('/', function callee$0$0(req, res, next) {
 
                 queryParameters.since_id = token.last_id;
 
-                context$1$0.prev = 6;
-                context$1$0.next = 9;
-                return regeneratorRuntime.awrap(getTweetsAsync("search/tweets", queryParameters));
+                if (!(complete == "1")) {
+                    context$1$0.next = 12;
+                    break;
+                }
 
-            case 9:
-                tweets = context$1$0.sent;
+                tweets = getTweets(token, search);
 
-                processTweets(token, tweets, res);
-                context$1$0.next = 17;
+                res.send(tweets);
+                context$1$0.next = 23;
                 break;
 
-            case 13:
-                context$1$0.prev = 13;
-                context$1$0.t0 = context$1$0['catch'](6);
+            case 12:
+                context$1$0.prev = 12;
+                context$1$0.next = 15;
+                return regeneratorRuntime.awrap(getTweetsAsync("search/tweets", queryParameters));
+
+            case 15:
+                _tweets = context$1$0.sent;
+
+                processTweets(token, _tweets, res);
+                context$1$0.next = 23;
+                break;
+
+            case 19:
+                context$1$0.prev = 19;
+                context$1$0.t0 = context$1$0['catch'](12);
 
                 console.log(context$1$0.t0);
                 res.status(500).send({ error: context$1$0.t0 });
 
-            case 17:
+            case 23:
             case 'end':
                 return context$1$0.stop();
         }
-    }, null, this, [[6, 13]]);
+    }, null, this, [[12, 19]]);
 });
 
 module.exports = router;

@@ -60,10 +60,10 @@ function saveTweets(token, data) {
     });
 }
 
-function getToken(token, search) {
+function getToken(tokenId, search) {
     console.log("getToken");
     var result = null;
-    var tokenPath = getTokenPath(search, token) + "\\token.json";
+    var tokenPath = getTokenPath(search, tokenId) + "\\token.json";
     
     if (fs.existsSync(tokenPath)) {
         result = JSON.parse(fs.readFileSync(tokenPath, "UTF-8"));
@@ -72,6 +72,37 @@ function getToken(token, search) {
         result = {
             id: generateToken(8),
             search: search
+        }
+    }
+    
+    return result;
+}
+
+function getTweets(token, search) {
+    console.log("getTweets");
+    
+    var tokenPath = getTokenPath(search, token.id);
+    var result = null;
+    
+    console.log("reading dirs " + tokenPath);
+    var files = fs.readdirSync(tokenPath);
+    for (var i in files) {
+        var file = files[i];
+        console.log("reading file " + file);
+        
+        if (file != "tokens.json") {
+            var json = JSON.parse(fs.readFileSync(tokenPath + "\\" + file, "UTF-8"));
+            
+            if (!result) {
+                result = json;
+            }
+            else {
+                for (var j in json.statuses) {
+                    result.statuses.push(json.statuses[j]);
+                }
+            }
+            
+            console.log("items " + result.statuses.length);
         }
     }
     
@@ -127,6 +158,7 @@ function getTweetsAsync(query, params) {
 router.get('/', async function (req, res, next) {
     var search = req.query.q;
     var token = req.query.token;
+    var complete = req.query.complete;
     var tweetCount = req.query.count || 10;
     
     var queryParameters = {
@@ -137,12 +169,18 @@ router.get('/', async function (req, res, next) {
     var token = getToken(token, search);
     queryParameters.since_id = token.last_id;
     
-    try {
-        let tweets = await getTweetsAsync("search/tweets", queryParameters);
-        processTweets(token, tweets, res);
-    } catch (e) {
-        console.log(e);
-        res.status(500).send({ error: e });
+    if (complete == "1") {
+        var tweets = getTweets(token, search);
+        res.send(tweets);
+    }
+    else {
+        try {
+            let tweets = await getTweetsAsync("search/tweets", queryParameters);
+            processTweets(token, tweets, res);
+        } catch (e) {
+            console.log(e);
+            res.status(500).send({ error: e });
+        }
     }
 
 
