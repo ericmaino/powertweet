@@ -64,7 +64,7 @@ function generateToken(len) {
 
 function processTweets(token, data, res) {
     token.last_id = data.search_metadata.max_id;
-    saveToken(token);
+    //saveToken(token);
     data.token = token.id;
     //data = cleanTweets(data);
     res.send(data);
