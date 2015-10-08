@@ -14,27 +14,28 @@ var T = new Twit({
 });
 
 function saveToken(token) {
+    /*
     if (!fs.existsSync("tokens")) {
         fs.mkdirSync("tokens");
     }
     
     fs.writeFileSync("tokens\\" + token.id + ".json", JSON.stringify(token), "UTF-8", function(err) {
         console.log(err);
-    });
+    });*/
 }
 
 function getToken(token) {
     var result = null;
     var tokenFile = "tokens\\" + token + ".json";
     
-    if (fs.existsSync(tokenFile)) {
-        result = JSON.parse(fs.readFileSync(tokenFile, "UTF-8"));
-    }
-    else {
+    //if (fs.existsSync(tokenFile)) {
+    //    result = JSON.parse(fs.readFileSync(tokenFile, "UTF-8"));
+    //}
+    //else {
         result = {
             id: generateToken(8)
         }
-    }
+    //}
     
     return result;
 }
