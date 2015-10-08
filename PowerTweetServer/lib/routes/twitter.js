@@ -51,6 +51,16 @@ function saveToken(token) {
     });
 }
 
+function saveTweets(token, data) {
+    console.log("saveTweets");
+    var basePath = getTokenPath(token.search, token.id);
+    mkDir(basePath);
+    var count = fs.readdirSync(basePath).length;
+    fs.writeFileSync(basePath + "\\" + count + ".json", JSON.stringify(data), "UTF-8", function (err) {
+        console.log(err);
+    });
+}
+
 function getToken(token, search) {
     console.log("getToken");
     var result = null;
@@ -95,7 +105,7 @@ function processTweets(token, data, res) {
     token.last_id = data.search_metadata.max_id;
     saveToken(token);
     data.token = token.id;
-    data = cleanTweets(data);
+    saveTweets(token, data);
     res.send(data);
 }
 
