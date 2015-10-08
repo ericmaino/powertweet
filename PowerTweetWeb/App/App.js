@@ -5,14 +5,22 @@ var app = (function () {
 
     var app = {};
 
-    // The initialize function must be run each time a new page is loaded
-    Office.initialize = function (reason) {
+    // Checking for Office
+    if (window.external.GetContext) {
+        // The initialize function must be run each time a new page is loaded
+        Office.initialize = function (reason) {
+            $(document).ready(function () {
+                app.initialize();
+                var tag = app.getHashTag();
+                $('.hashtag').html(tag);
+            });
+        };
+    } else {
+        // We're probably *not* running in Office
         $(document).ready(function () {
             app.initialize();
-            var tag = app.getHashTag();
-            $('.hashtag').html(tag);
         });
-    };
+    }
 
     Date.prototype.yyyymmdd = function () {
         var yyyy = this.getFullYear().toString();
