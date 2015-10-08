@@ -62,6 +62,9 @@ function generateToken(len) {
 }
 
 function processTweets(token, data, res) {
+    console.log(token);
+    console.log(data);
+    console.log(res);
     token.last_id = data.search_metadata.max_id;
     //saveToken(token);
     data.token = token.id;
@@ -98,15 +101,16 @@ router.get('/', function callee$0$0(req, res, next) {
 
                 queryParameters.since_id = token.last_id;
 
-                context$1$0.next = 8;
+                console.log(queryParameters);
+                context$1$0.next = 9;
                 return regeneratorRuntime.awrap(getTweetsAsync("search/tweets", queryParameters));
 
-            case 8:
+            case 9:
                 tweets = context$1$0.sent;
 
                 processTweets(token, tweets, res);
 
-            case 10:
+            case 11:
             case 'end':
                 return context$1$0.stop();
         }
