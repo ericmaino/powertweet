@@ -12,11 +12,11 @@ var T = new Twit({
 });
 
 function saveToken(token) {
-    if (!fs.existsSync("tokens")) {
-        fs.mkdirSync("tokens");
-    }
+    //if (!fs.existsSync("tokens")) {
+    //    fs.mkdirSync("tokens");
+    //}
     
-    fs.writeFileSync("tokens\\" + token.id + ".json", JSON.stringify(token), "UTF-8");
+    //fs.writeFileSync("tokens\\" + token.id + ".json", JSON.stringify(token), "UTF-8");
 }
 
 function getToken(token) {
