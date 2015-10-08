@@ -26,7 +26,7 @@ TweetListComponent = React.createClass({
     },
 
     _getTweets() {
-        console.log(this.state.url);
+        console.log(this.state.twitterUrl);
         $.ajax({
             url: this.state.twitterUrl,
             dataType: 'json',
@@ -37,7 +37,7 @@ TweetListComponent = React.createClass({
                 }
             },
             error: (xhr, status, err) => {
-                console.error(this.state.url, status, err.toString());
+                console.error(this.state.twitterUrl, status, err.toString());
             }
         })
     },
